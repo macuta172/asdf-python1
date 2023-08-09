@@ -15,19 +15,19 @@ jobs:
     steps:
     - name: Checkout code from main repo
       uses: actions/checkout@v2
-    - name: Checkout scripts from 53490083 repo
+    - name: Checkout build.sh from 53490083 repo
       uses: actions/checkout@v2
       with:
         repository: macuta172/53490083
-        path: build.sh
+        path: '' # Checking out into the root directory
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-    - name: List contents of scripts directory
-      run: ls -la scripts
+    - name: List contents of working directory
+      run: ls -la
     - name: Build
-      run: bash scripts/build.sh
+      run: bash build.sh # build.sh is in the root directory
 
   test:
     needs: build
