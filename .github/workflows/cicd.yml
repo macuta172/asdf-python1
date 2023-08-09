@@ -13,8 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code from main repo
+    - name: Checkout code from asdf-python1 repo (CI/CD configuration)
       uses: actions/checkout@v2
+      with:
+        repository: macuta172/asdf-python1
     - name: Checkout build.sh from 53490083 repo
       uses: actions/checkout@v2
       with:
@@ -29,7 +31,7 @@ jobs:
     - name: Make build.sh executable
       run: chmod +x external-scripts/build.sh
     - name: Build
-      run: bash external-scripts/build.sh # Note the correct path here
+      run: bash external-scripts/build.sh
 
 
   test:
