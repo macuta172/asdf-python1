@@ -1,0 +1,25 @@
+name: Build Only
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code from asdf-python1 repo
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Make create build.sh executable
+      run: chmod +x $GITHUB_WORKSPACE/create build.sh
+    - name: Build
+      run: $GITHUB_WORKSPACE/create build.sh
