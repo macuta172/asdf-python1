@@ -1,4 +1,4 @@
-name: Build, Test and Deploy
+name: Build Only
 
 on:
   push:
@@ -13,61 +13,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code from asdf-python1 repo (CI/CD configuration)
+    - name: Checkout code from asdf-python1 repo
       uses: actions/checkout@v2
-      with:
-        repository: macuta172/asdf-python1
-    - name: Checkout build.sh from 53490083 repo
-      uses: actions/checkout@v2
-      with:
-        repository: macuta172/53490083
-        path: external-scripts
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-    - name: List all contents
-      run: find .
     - name: Make build.sh executable
-      run: chmod +x external-scripts/build.sh
+      run: chmod +x $GITHUB_WORKSPACE/build.sh
     - name: Build
-      run: bash external-scripts/build.sh
-
-
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code from main repo
-      uses: actions/checkout@v2
-    - name: Checkout scripts from 53490083 repo
-      uses: actions/checkout@v2
-      with:
-        repository: macuta172/53490083
-        path: scripts
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-    - name: Test
-      run: bash scripts/test.sh
-
-  deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code from main repo
-      uses: actions/checkout@v2
-    - name: Checkout scripts from 53490083 repo
-      uses: actions/checkout@v2
-      with:
-        repository: macuta172/53490083
-        path: scripts
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-    - name: Deploy
-      run: bash scripts/deploy.sh
+      run: $GITHUB_WORKSPACE/build.sh
