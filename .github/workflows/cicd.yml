@@ -13,53 +13,55 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
+    - name: Checkout code from main repo
       uses: actions/checkout@v2
     - name: Checkout scripts from 53490083 repo
       uses: actions/checkout@v2
       with:
         repository: macuta172/53490083
-        path: scripts
+        path: . # If scripts are in the root of the repo, checkout into the current working directory
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
+    - name: List contents of current directory
+      run: ls -la
     - name: Build
-      run: bash scripts/build.sh
+      run: bash build.sh
 
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
+    - name: Checkout code from main repo
       uses: actions/checkout@v2
     - name: Checkout scripts from 53490083 repo
       uses: actions/checkout@v2
       with:
         repository: macuta172/53490083
-        path: scripts
+        path: . # Same as above
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
     - name: Test
-      run: bash scripts/test.sh
+      run: bash test.sh
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
+    - name: Checkout code from main repo
       uses: actions/checkout@v2
     - name: Checkout scripts from 53490083 repo
       uses: actions/checkout@v2
       with:
         repository: macuta172/53490083
-        path: scripts
+        path: . # Same as above
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
     - name: Deploy
-      run: bash scripts/deploy.sh
+      run: bash deploy.sh
