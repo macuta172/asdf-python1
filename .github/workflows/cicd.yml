@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: macuta172/53490083
-        path: scripts # Check out scripts into a subdirectory named scripts
+        path: .
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -27,7 +27,7 @@ jobs:
     - name: List contents of scripts directory
       run: ls -la scripts
     - name: Build
-      run: bash scripts/build.sh # Refer to build.sh in the scripts subdirectory
+      run: bash build.sh # Refer to build.sh in the scripts subdirectory
 
   test:
     needs: build
@@ -39,13 +39,13 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: macuta172/53490083
-        path: scripts
+        path: .
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
     - name: Test
-      run: bash scripts/test.sh
+      run: bash test.sh
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -58,11 +58,11 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: macuta172/53490083
-        path: scripts
+        path: .
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
     - name: Deploy
-      run: bash scripts/deploy.sh
+      run: bash deploy.sh
 
