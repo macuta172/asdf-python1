@@ -16,9 +16,9 @@ jobs:
     - name: Checkout code from asdf-python1 repo
       uses: actions/checkout@v3
     - name: Set up Python
-      uses: actions/setup-python@v4.7
+      uses: actions/setup-python@v3.8
       with:
-        python-version: '3.10'
+        python-version: '3.8'
     - name: Make build.sh executable
       run: chmod +x $GITHUB_WORKSPACE/build.sh
     - name: Build
