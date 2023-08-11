@@ -21,4 +21,4 @@ To get started with this repository, please make sure you have the necessary per
 
 ## Support & Collaboration
 
-Should you need support or wish to collaborate on a specific project within this repository, please reach out to the team leads or use the designated communication channels within our organization.
+Should you need support or wish to collaborate on a specific project within this repository, please reach out to the team leads or use the designated communication channels within our organization.1
