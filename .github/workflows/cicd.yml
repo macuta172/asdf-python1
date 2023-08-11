@@ -20,6 +20,4 @@ jobs:
       with:
         python-version: '3.8'
     - name: Make build.sh executable
-      run: chmod +x $GITHUB_WORKSPACE/build.sh
-    - name: Build
-      run: $GITHUB_WORKSPACE/build.sh
+      run: python build.sh
