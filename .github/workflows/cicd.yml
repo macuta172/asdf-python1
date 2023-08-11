@@ -20,4 +20,4 @@ jobs:
       with:
         python-version: '3.8'
     - name: Make build.sh executable
-      run: python app.py
+      run: build.sh
