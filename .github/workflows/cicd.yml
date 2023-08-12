@@ -53,5 +53,7 @@ jobs:
           python-version: '3.8'
       - name: Make deploy.sh executable
         run: chmod +x ./deploy.sh
-      - name: Run deploy.sh
+      - name: Run deploy.sh and app.py
         run: ./deploy.sh
+        run: python app.py
+
