@@ -55,5 +55,6 @@ jobs:
         run: chmod +x ./deploy.sh
       - name: Run deploy.sh and app.py
         run: ./deploy.sh
+      - name: Run app.py
         run: python app.py
 
