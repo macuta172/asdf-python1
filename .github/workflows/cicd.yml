@@ -1,4 +1,4 @@
-name: Build Only
+name: cicd
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code from asdf-python1 repo
+      - name: Checkout code
         uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v3
